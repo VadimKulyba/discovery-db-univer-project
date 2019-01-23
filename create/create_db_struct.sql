@@ -193,3 +193,7 @@ INSERT INTO Shows(NumberShow, ExpeditionNumber, NumberTeleshow)
     VALUES(Seq5.nextval, 5, 3);
 INSERT INTO Shows(NumberShow, ExpeditionNumber, NumberTeleshow)
     VALUES(Seq5.nextval, 4, 2);
+
+UPDATE Expeditions
+SET DateFinish = to_date('11/03/2019', 'DD/MM/YYYY')
+WHERE ExpeditionNumber = 3;
