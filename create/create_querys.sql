@@ -20,7 +20,7 @@ FROM Regions
 WHERE NumberRegion = &NumberRegion;
 
 -- 4. UNION query Count exp, lead and usuql
-
+-- 
 SELECT T.LastName, T.FirstName, T.TravelerEmail, COUNT(E.TravelerNumber), 'lead'
 FROM Travelers T LEFT JOIN Expeditions E
 ON T.TravelerNumber = E.TravelerNumber
@@ -34,6 +34,7 @@ GROUP BY T.LastName, T.FirstName, T.TravelerEmail;
 
 -- 5. Query with date type
 -- execute now
+-- 
 SELECT * FROM Expeditions
 WHERE sysdate > Expeditions.DateStart AND sysdate < DateFinish;
 
@@ -59,6 +60,7 @@ WHERE T.Chanel = 'Discovery';
 
 -- 7. LEFT JOIN
 -- sum expedition distans > 850
+-- 
 SELECT ExpeditionName, SUM(T.Distance) as SumDist
 FROM Expeditions E LEFT JOIN Trips T
 USING(ExpeditionNumber)
