@@ -194,6 +194,11 @@ INSERT INTO Shows(NumberShow, ExpeditionNumber, NumberTeleshow)
 INSERT INTO Shows(NumberShow, ExpeditionNumber, NumberTeleshow)
     VALUES(Seq5.nextval, 4, 2);
 
+-- update struct
 UPDATE Expeditions
 SET DateFinish = to_date('11/03/2019', 'DD/MM/YYYY')
 WHERE ExpeditionNumber = 3;
+
+DELETE FROM Regions WHERE NumberRegion = 21; 
+
+-- add index and ...
