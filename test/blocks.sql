@@ -146,35 +146,34 @@ BEGIN
 END;
 /
 
--- example 6 cursors
+-- example 7 exceptions
 DECLARE
-expNum Trips.ExpeditionNumber%TYPE := 1;
-minDist Trips.Distance%TYPE := 200.00;
-maxDist Trips.Distance%TYPE := 1000.00;
-pcDist NUMBER(5,2) := 10;
-   CURSOR list_trip(expN IN NUMBER)
-   IS
-      SELECT * FROM Trips
-      WHERE ExpeditionNumber = expN;
-trip list_trip%ROWTYPE;
-new_dist Trips.Distance%TYPE;
+vals VARCHAR2(30) := 'S';
+valn NUMBER;
+expChar_To_number EXCEPTION;
+   PRAGMA EXCEPTION_INIT(expChar_To_number, -06502);
 BEGIN
-   OPEN list_trip(expNum);
-   DBMS_OUTPUT.PUT_LINE('open cupsor');
-   FETCH list_trip
-      INTO trip;
-   WHILE list_trip%FOUND LOOP
-      new_dist := trip.Distance*(100 + pcDist) / 100;
-      IF new_dist > maxDist
-         THEN new_dist := maxDist;
-      ELSIF new_dist < minDist
-         THEN new_dist := minDist;
-      END IF;
-      DBMS_OUTPUT.PUT_LINE('Trip'||trip.NumberTrip||', old distance = '||trip.Distance||' ,new distance'||new_dist);
-      FETCH list_trip
-         INTO trip;
-   END LOOP;
-   CLOSE list_trip;
-   DBMS_OUTPUT.PUT_LINE('close cupsor');
+   DBMS_OUTPUT.PUT_LINE('string ='||vals);
+   valn := TO_NUMBER(vals);
+   DBMS_OUTPUT.PUT_LINE('number ='||valn);
+   EXCEPTION
+      WHEN expChar_To_number THEN
+      DBMS_OUTPUT.PUT_LINE('not number');
+END;
+/
+
+-- example 8, create proc
+-- current date
+CREATE OR REPLACE PROCEDURE show_date
+IS
+today DATE DEFAULT SYSDATE;
+BEGIN
+DBMS_OUTPUT.PUT_LINE('current date = '||today);
+END show_date;
+/
+
+-- call
+BEGIN
+show_date;
 END;
 /
