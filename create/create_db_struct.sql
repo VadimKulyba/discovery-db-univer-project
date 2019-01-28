@@ -199,6 +199,15 @@ UPDATE Expeditions
 SET DateFinish = to_date('11/03/2019', 'DD/MM/YYYY')
 WHERE ExpeditionNumber = 3;
 
+INSERT INTO Expeditions(ExpeditionNumber, ExpeditionName, ExpeditionTarget, DateStart, DateFinish, TravelerNumber)
+    VALUES(Seq2.nextval, 'Китай', 'Исследование редких видов китайских животных', to_date('10/05/2015', 'DD/MM/YYYY'), to_date('03/07/2015', 'DD/MM/YYYY'), 3);
+
+INSERT INTO Travelers(TravelerNumber, TravelerEmail, FirstName, LastName, Department, TravelerRole, PhoneNumber)
+    VALUES(Seq0.nextval, 'columb.h@gmail.com', 'Христофор' ,' Колумб', 'Мореплаватель', 'admin', '+375225707957');
+
+INSERT INTO Forms(NumberForm, TravelerPosition, TravelerNumber, ExpeditionNumber)
+    VALUES(Seq3.nextval, 'Картограф', 8, 1);
+
 DELETE FROM Regions WHERE NumberRegion = 21; 
 
 -- add index and ...

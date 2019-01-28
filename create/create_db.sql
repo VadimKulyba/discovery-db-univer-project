@@ -1,7 +1,7 @@
 --  sqlplus sys as sysdba
 
-create user "username" identified by "password";
+create user USERNAME identified by PASSWORD;
 
-grant connect, resource to "username";
+grant connect, resource to USERNAME;
 
 -- sqlplus
